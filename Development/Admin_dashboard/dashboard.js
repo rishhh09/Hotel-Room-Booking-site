@@ -77,15 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = node.querySelector('.room-title');
             const meta = node.querySelector('.room-meta');
             const statusBadge = node.querySelector('.room-status-badge');
-            const desc = node.querySelector('.room-desc');
             const actions = node.querySelector('.actions');
 
-            img.src = getRoomImage(r); img.alt = `Room ${r.roomNumber}`;
-            title.textContent = `#${r.roomNumber} — ${r.roomType}`;
-            meta.textContent = `Capacity: ${r.roomCapacity || '-'} · Price: ${r.pricePerNight || '-'}`;
+            img.src = getRoomImage(r); 
+            img.alt = `Room ${r.roomNumber}`;
+            title.textContent = `Room #${r.roomNumber} — ${r.roomType}`;
+            meta.textContent = `Capacity: ${r.roomCapacity || '-'} | Price: ₹${r.pricePerNight || '-'}/night`;
             statusBadge.textContent = r.status;
             statusBadge.className = `status-badge status-${String(r.status).replace(/\s/g, '-')}`;
-            desc.textContent = r.description || '';
 
             const card = node.querySelector('.room-card');
             card.addEventListener('click', (e) => {
@@ -103,7 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     select.appendChild(opt);
                 });
                 select.addEventListener('change', async (ev) => {
-                    try { await authFetch(`/rooms/${r._id}/status`, { method: 'PUT', body: JSON.stringify({ status: ev.target.value }) }); showToast('Room status updated'); fetchRooms(); }
+                    try { 
+                        await authFetch(`/rooms/${r._id}/status`, { method: 'PUT', body: JSON.stringify({ status: ev.target.value }) }); 
+                        showToast('Room status updated'); 
+                        fetchRooms(); 
+                    }
                     catch (err) { console.error('update status', err); showToast('Failed to update status', 3000); }
                 });
                 actions.appendChild(select);
@@ -117,16 +120,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const imageUrl = getRoomImage(room);
         if (modalTitle) modalTitle.textContent = `Room #${room.roomNumber} • ${room.roomType}`;
         if (modalBody) modalBody.innerHTML = `
-      <div style="display:flex;gap:12px;flex-direction:column">
-        <img src="${imageUrl}" alt="Room ${room.roomNumber}" style="width:100%;height:auto;border-radius:8px;object-fit:cover" />
-        <div>
-          <p><strong>Capacity:</strong> ${room.roomCapacity || '-'}</p>
-          <p><strong>Price:</strong> ${room.pricePerNight || '-'}</p>
-          <p><strong>Status:</strong> <span class="status-badge status-${String(room.status).replace(/\s/g, '-')}">${room.status}</span></p>
-          <p>${room.description || ''}</p>
-        </div>
-      </div>
-    `;
+            <div style="display:flex;gap:12px;flex-direction:column">
+                <img src="${imageUrl}" alt="Room ${room.roomNumber}" style="width:100%;height:auto;border-radius:8px;object-fit:cover" />
+                <div>
+                    <p><strong>Capacity:</strong> ${room.roomCapacity || '-'}</p>
+                    <p><strong>Price:</strong> ₹${room.pricePerNight || '-'}/night</p>
+                    <p><strong>Status:</strong> <span class="status-badge status-${String(room.status).replace(/\s/g, '-')}">${room.status}</span></p>
+                    <p>${room.description || ''}</p>
+                </div>
+            </div>
+        `;
         if (modalOverlay) modalOverlay.classList.remove('hidden');
     }
 
@@ -146,66 +149,38 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderBookings(bookings) {
         if (!bookingsTbody) return;
         if (!bookings.length) { bookingsTbody.innerHTML = '<tr><td colspan="5">No bookings found.</td></tr>'; return; }
-        bookingsTbody.innerHTML = bookings.map(b => {
-            const guest = (b.userId && (b.userId.userName || b.userId.email)) || b.guestName || 'Guest';
-            const roomText = (b.roomId && (b.roomId.roomNumber || b.roomId)) || '-';
-            const dates = `${new Date(b.checkInDate).toLocaleDateString()} → ${new Date(b.checkOutDate).toLocaleDateString()}`;
-            return `<tr data-id="${b._id}">
-        <td>${guest}</td>
-        <td>${roomText}</td>
-        <td>${dates}</td>
-        <td><select class="booking-status">${['Confirmed', 'Cancelled', 'CheckedIn', 'CheckedOut', 'Pending'].map(s => `<option ${s === b.status ? 'selected' : ''} value="${s}">${s}</option>`).join('')}</select></td>
-        <td class="booking-actions"><button class="btn" data-action="view">View</button><button class="btn ghost" data-action="refresh">Refresh</button></td>
-      </tr>`;
-        }).join('');
-        // handlers
-        document.querySelectorAll('.booking-status').forEach(sel => {
-            sel.addEventListener('change', async (e) => {
-                const tr = e.target.closest('tr'); const id = tr.dataset.id; const status = e.target.value;
-                if (!confirm(`Set booking ${id} status to ${status}?`)) { fetchBookings(); return; }
-                try { await authFetch(`/bookings/${id}/status`, { method: 'PUT', body: JSON.stringify({ status }) }); showToast('Booking updated'); fetchBookings(); }
-                catch (err) { console.error(err); showToast('Failed to update booking', 3000); }
-            });
+        bookingsTbody.innerHTML = '';
+        bookings.forEach(b => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${b.guestName || '-'}</td>
+                <td>${b.roomNumber || '-'}</td>
+                <td>${b.checkInDate?.slice(0,10)} → ${b.checkOutDate?.slice(0,10)}</td>
+                <td>${b.status || '-'}</td>
+                <td class="booking-actions">
+                    <button class="btn ghost">View</button>
+                </td>
+            `;
+            bookingsTbody.appendChild(tr);
         });
-
-        document.querySelectorAll('.booking-actions button').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const action = e.currentTarget.dataset.action;
-                const tr = e.currentTarget.closest('tr'); const id = tr.dataset.id;
-                if (action === 'view') {
-                    const booking = (window._lastBookings || []).find(x => String(x._id) === String(id));
-                    if (booking) {
-                        modalTitle.textContent = `Booking • ${booking._id}`;
-                        modalBody.innerHTML = `<p><strong>Guest:</strong> ${(booking.userId && booking.userId.userName) || booking.guestName || 'Guest'}</p>
-              <p><strong>Room:</strong> ${booking.roomId?.roomNumber || '-'}</p>
-              <p><strong>Dates:</strong> ${new Date(booking.checkInDate).toLocaleDateString()} → ${new Date(booking.checkOutDate).toLocaleDateString()}</p>
-              <p><strong>Status:</strong> ${booking.status}</p>`;
-                        modalOverlay.classList.remove('hidden');
-                    }
-                } else if (action === 'refresh') fetchBookings();
-            });
-        });
-        window._lastBookings = bookings;
     }
 
-    // navigation
-    menuItems.forEach(btn => btn.addEventListener('click', () => {
-        menuItems.forEach(b => b.classList.remove('active')); btn.classList.add('active');
-        const tab = btn.dataset.tab;
-        document.getElementById('roomsTab').classList.toggle('hidden', tab !== 'rooms');
-        document.getElementById('bookingsTab').classList.toggle('hidden', tab !== 'bookings');
-        pageTitle.textContent = tab === 'rooms' ? 'Rooms' : 'Bookings';
-    }));
+    // tab switching
+    menuItems.forEach(btn => {
+        btn.addEventListener('click', () => {
+            menuItems.forEach(i => i.classList.remove('active'));
+            btn.classList.add('active');
+            const tab = btn.dataset.tab;
+            pageTitle.textContent = tab.charAt(0).toUpperCase() + tab.slice(1);
+            document.getElementById('roomsTab')?.classList.toggle('hidden', tab !== 'rooms');
+            document.getElementById('bookingsTab')?.classList.toggle('hidden', tab !== 'bookings');
+            if (tab === 'rooms') fetchRooms(); else if (tab === 'bookings') fetchBookings();
+        });
+    });
 
-    // events
-    let searchTimer;
-    roomSearch?.addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(fetchRooms, 300); });
-    roomFilter?.addEventListener('change', fetchRooms);
-    refreshBtn?.addEventListener('click', () => { fetchRooms(); fetchBookings(); });
+    roomSearch?.addEventListener('input', () => fetchRooms());
+    roomFilter?.addEventListener('change', () => fetchRooms());
+    refreshBtn?.addEventListener('click', () => fetchRooms());
 
-    document.getElementById('logoutBtn')?.addEventListener('click', () => { localStorage.removeItem(TOKEN_KEY); window.location.href = '../registrations/admin_login/admin_login.html'; });
-
-    // init
     fetchRooms();
-    fetchBookings();
 });

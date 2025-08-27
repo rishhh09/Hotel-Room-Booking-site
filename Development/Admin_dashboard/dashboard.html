@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <title>Admin Dashboard</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="dashboard.css" />
 </head>
-
 <body>
     <div class="app">
         <aside class="sidebar">
@@ -43,17 +41,17 @@
             <!-- Room card template -->
             <template id="roomCardTemplate">
                 <div class="room-card">
-                    <div class="room-image-wrap"><img class="room-thumb" src="" alt="" loading="lazy" /></div>
-                    <div class="room-head">
-                        <div>
-                            <div class="room-title"></div>
-                            <div class="meta room-meta"></div>
-                        </div>
-                        <div class="actions">
+                    <div class="room-image-wrap">
+                        <img class="room-thumb" src="" alt="" loading="lazy" />
+                    </div>
+                    <div class="room-content">
+                        <div class="room-title"></div>
+                        <div class="room-meta"></div>
+                        <div class="room-footer">
                             <span class="status-badge room-status-badge"></span>
+                            <div class="actions"></div>
                         </div>
                     </div>
-                    <div class="meta room-desc"></div>
                 </div>
             </template>
 
@@ -97,8 +95,6 @@
     </div>
 
     <div id="toast" class="toast hidden"></div>
-
     <script src="dashboard.js"></script>
 </body>
-
 </html>
