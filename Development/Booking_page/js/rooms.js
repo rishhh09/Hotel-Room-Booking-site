@@ -32,8 +32,16 @@ function openModal(room) {
 
     // helper to pick image URL for public page
     function getRoomImagePublic(r) {
-        return r.image || (Array.isArray(r.images) && r.images[0]) || '/uploads/placeholder.jpg';
-    }
+            const baseURL = "http://localhost:5001"; // adjust if your backend host changes
+
+            if (r.image) {
+                return `${baseURL}${r.image}`;
+            }
+            if (Array.isArray(r.images) && r.images[0]) {
+                return `${baseURL}${r.images[0]}`;
+            }
+            return `${baseURL}/uploads/placeholder.jpg`;
+        }
 
     // set an image inside the modal if desired
     // example: create an <img> and insert before form
@@ -142,10 +150,20 @@ async function fetchRooms() {
 
         // helper to pick image URL for public page
         function getRoomImagePublic(r) {
-            return r.image || (Array.isArray(r.images) && r.images[0]) || '/uploads/placeholder.jpg';
+            const baseURL = "http://localhost:5001"; // adjust if your backend host changes
+
+            if (r.image) {
+                return `${baseURL}${r.image}`;
+            }
+            if (Array.isArray(r.images) && r.images[0]) {
+                return `${baseURL}${r.images[0]}`;
+            }
+            return `${baseURL}/uploads/placeholder.jpg`;
         }
 
         rooms.forEach(room => {
+            console.log("Room image raw:", room.image);
+            console.log("Room image normalized:", getRoomImagePublic(room));
             const roomCard = document.createElement('div');
             roomCard.classList.add('card', 'room-card');
             roomCard.innerHTML = `
