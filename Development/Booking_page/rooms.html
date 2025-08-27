@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Rooms - Hotel Booking</title>
+    <link rel="stylesheet" href="common_style.css">
+    <style>
+        /* Specific styles for rooms.html */
+        #roomsList {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .room-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .room-card button {
+            width: auto;
+            align-self: flex-end;
+            margin-top: 10px;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hotel Rooms</h1>
+            <nav>
+                <ul>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="Booking_page.html">My Bookings</a></li>
+                    <li><a href="#" id="logoutBtn">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div id="message-box" class="message-box"></div>
+
+            <h2>Available Rooms</h2>
+            <div id="roomsList">
+                <p>Loading rooms...</p>
+            </div>
+        </main>
+    </div>
+
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Book Room <span id="modalRoomNumber"></span></h2>
+            <form id="bookingForm">
+                <input type="hidden" id="bookingRoomId">
+
+                <div class="form-group">
+                    <label for="guestName">Your Full Name</label>
+                    <input type="text" id="guestName" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkInDate">Check-in Date</label>
+                    <input type="date" id="checkInDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkOutDate">Check-out Date</label>
+                    <input type="date" id="checkOutDate" required>
+                </div>
+                <button type="submit">Confirm Booking</button>
+                <p id="bookingMessage" class="message-box"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/rooms.js"></script>
+</body>
+</html>

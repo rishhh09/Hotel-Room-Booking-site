@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">Hotel Admin</div>
+
+            <div class="controls">
+                <input id="roomSearch" type="search" placeholder="Search rooms..." />
+                <select id="roomFilter">
+                    <option value="">All Statuses</option>
+                    <option value="Available">Available</option>
+                    <option value="Booked">Booked</option>
+                    <option value="Under Maintenance">Under Maintenance</option>
+                    <option value="Disabled">Disabled</option>
+                </select>
+                <button id="refreshBtn" class="btn">Refresh</button>
+            </div>
+
+            <nav class="menu">
+                <button class="menu-item active" data-tab="rooms">Rooms</button>
+                <button class="menu-item" data-tab="bookings">Bookings</button>
+            </nav>
+
+            <div class="footer">
+                <button id="logoutBtn" class="btn ghost">Logout</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h1 id="pageTitle">Rooms</h1>
+            </header>
+
+            <!-- Room card template -->
+            <template id="roomCardTemplate">
+                <div class="room-card">
+                    <div class="room-image-wrap"><img class="room-thumb" src="" alt="" loading="lazy" /></div>
+                    <div class="room-head">
+                        <div>
+                            <div class="room-title"></div>
+                            <div class="meta room-meta"></div>
+                        </div>
+                        <div class="actions">
+                            <span class="status-badge room-status-badge"></span>
+                        </div>
+                    </div>
+                    <div class="meta room-desc"></div>
+                </div>
+            </template>
+
+            <section id="roomsTab" class="tab-section">
+                <div id="roomsGrid" class="rooms-grid">Loading rooms...</div>
+                <div id="roomsEmpty" class="empty hidden">No rooms found.</div>
+            </section>
+
+            <section id="bookingsTab" class="tab-section hidden">
+                <div class="card">
+                    <table id="bookingsTable" class="bookings-table">
+                        <thead>
+                            <tr>
+                                <th>Guest</th>
+                                <th>Room</th>
+                                <th>Dates</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTbody">
+                            <tr>
+                                <td colspan="5">Loading bookings...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Room modal -->
+    <div id="modalOverlay" class="modal-overlay hidden">
+        <div class="modal">
+            <h3 id="modalTitle">Room</h3>
+            <div id="modalBody"></div>
+            <div class="modal-actions">
+                <button id="modalClose" class="btn ghost">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

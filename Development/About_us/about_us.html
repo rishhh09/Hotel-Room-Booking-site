@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Aghore Shaktipeeth - About Us</title>
+    <link rel="stylesheet" href="about_us.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <h1 class="logo">Aghor Sakti Peeth</h1>
+            <div class="nav-links">
+                <a href="/Development/index.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Rooms</a>
+                <a href="#" class="nav-link">About Us</a>
+                <a href="http://127.0.0.1:3000/Development/registrations/Sign_in_Page/sign_in.html" class="nav-link">Sign in</a>
+                <button class="btn btn-primary">Book Now</button>
+            </div>
+            <button class="menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12" />
+                    <line x1="4" x2="20" y1="6" y2="6" />
+                    <line x1="4" x2="20" y1="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="content-wrapper"> <div class="container">
+            <div class="image-container">
+                <img src="/Development/resources/hotel_outside.jpg" alt="Hotel Aghore Shaktipeeth" width="600" height="100">
+            </div>
+            <h1>Welcome to Hotel Aghore Shaktipeeth</h1>
+            <div class="section">
+                <p>Discover tranquility at Hotel Aghore Shaktipeeth, nestled in Narendranagar, with breathtaking views and exceptional service. We are located <span class="highlight">42 km</span> from the spiritual Mansa Devi Temple, offering a peaceful retreat for all our guests.</p>
+            </div>
+            <div class="section features">
+                <h2>Our Premium Features</h2>
+                <ul>
+                    <li>Air-conditioned rooms</li>
+                    <li>Private balconies with scenic views</li>
+                    <li>Fully equipped kitchens</li>
+                    <li>Complimentary Wi-Fi</li>
+                    <li>Daily breakfast (continental, Asian, vegetarian)</li>
+                    <li>Shared lounge and terrace</li>
+                    <li>24-hour room service</li>
+                    <li>Tour organization assistance</li>
+                    <li>Flat-screen TVs with cable</li>
+                    <li>Safety deposit boxes</li>
+                    <li>Free private parking</li>
+                </ul>
+            </div>
+            <div class="section location-info">
+                <h2>Explore Our Location</h2>
+                <p><span class="highlight">Address:</span> Narendranagar, Uttarakhand, India</p>
+                <p><span class="highlight">Nearby Attractions:</span></p>
+                <ul class="nearby-list">
+                    <li>Ram Jhula (<span class="highlight">16 km</span>)</li>
+                    <li>Patanjali International Yoga Foundation (<span class="highlight">18 km</span>)</li>
+                    <li>Himalayan Yog Ashram (<span class="highlight">18 km</span>)</li>
+                    <li>Rishikesh Railway Station (<span class="highlight">18 km</span>)</li>
+                    <li>Triveni Ghat (<span class="highlight">19 km</span>)</li>
+                    <li>Laxman Jhula (<span class="highlight">3.5 km</span>)</li>
+                    <li>Patna Waterfall (<span class="highlight">6 km</span>)</li>
+                </ul>
+                <p><span class="highlight">Restaurants:</span></p>
+                <ul class="nearby-list">
+                    <li>Maa Vaishno Bhojnalaya (<span class="highlight">2.9km</span>)</li>
+                    <li>Shiv Ganga Restaurant (<span class="highlight">2.7km</span>)</li>
+                    <li>S. K. Regency Restaurant (<span class="highlight">2.7km</span>)</li>
+                </ul>
+                <p><span class="highlight">Transportation:</span></p>
+                <ul class="nearby-list">
+                    <li>Dehradun Airport (<span class="highlight">27 km</span>)</li>
+                    <li>Rishikesh Railway Station (<span class="highlight">18 km</span>)</li>
+                    <li>Virbhadra Train Station (<span class="highlight">13km</span>)</li>
+                </ul>
+            </div>
+            <div class="section">
+                <p>Our friendly staff, fluent in English and Hindi, are ready to assist you in making your stay comfortable and memorable. Experience the serenity and beauty of Narendranagar with us.</p>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>&copy; 2024 Hotel Aghore Shaktipeeth. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.querySelector('.menu-button');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuButton.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.alignItems = 'flex-start';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '60px';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.background = 'white';
+                    navLinks.style.padding = '1rem';
+                }else{
+                    navLinks.style.position = 'static';
+                    navLinks.style.flexDirection = 'row';
+                    navLinks.style.padding = '0';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

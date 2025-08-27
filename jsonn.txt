@@ -1,0 +1,20 @@
+{
+    "userName": "Rishabh" ,
+    "email" : "rishabh@gmail.com",
+    "password": "rishabh1234"
+}
+
+{
+    "roomId": "67fd2b88eae8123a4ab9c489",
+    "guestName": "John Doe",
+    "checkInDate": "2025-12-01T00:00:00.000Z",
+    "checkOutDate": "2025-12-05T00:00:00.000Z",
+    "status": "Confirmed"
+}
+
+{
+    "roomId": "67fd2b88eae8123a4ab9c488",
+    "guestName": "Rishabh Singh Nakoti",
+    "checkInDate": "2025-12-04T00:00:00.000Z",
+    "checkOutDate": "2025-12-08T00:00:00.000Z"
+}

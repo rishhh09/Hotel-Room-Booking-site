@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel booking</title>
+    <link rel="stylesheet" href="classes.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <h1 class="logo">Aghor Sakti Peeth</h1>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="/Development/Booking_page/rooms.html" class="nav-link">Rooms</a>
+                <a href="/Development/About_us/about_us.html" class="nav-link">About Us</a>
+                <a href="http://127.0.0.1:3000/Development/registrations/Sign_in_Page/sign_in.html"
+                    class="nav-link">Sign in</a>
+                <a href="/Development/Booking_page/rooms.html">
+                    <button class="btn btn-primary">Book Now</button>
+                </a>
+            </div>
+            <button class="menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12" />
+                    <line x1="4" x2="20" y1="6" y2="6" />
+                    <line x1="4" x2="20" y1="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2 class="hero-title">Find Your Perfect Stay<br>with Us</h2>
+            <a href="/Development/Booking_page/rooms.html">
+                <button class="btn btn-secondary">Book Now</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="booking-container">
+        <div class="booking-header">
+            <h2 class="booking-title">Book Your Stay</h2>
+            <p class="booking-subtitle">Find your perfect room</p>
+        </div>
+
+        <form class="booking-form">
+            <div class="form-group">
+                <label for="check-in">
+                    <div class="dateIcon"><i class="fa-solid fa-calendar-days"></i></div>
+                    Check-in Date
+                </label>
+                <input type="date" id="check-in" class="date-input">
+            </div>
+
+            <div class="form-group">
+                <label for="check-out">
+                    <div class="dateIcon"><i class="fa-solid fa-calendar-days"></i></div>
+                    Check-out Date
+                </label>
+                <input type="date" id="check-out" class="date-input">
+            </div>
+
+            <div class="form-group">
+                <label for="guests">
+                    <div class="personIcon"><i class="fa-solid fa-person"></i></div>
+                    Guests
+                </label>
+                <div class="select-wrapper">
+                    <select id="guests">
+                        <option selected>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="book-now-btn">
+                BOOK
+                <div class="rightIcon"><i class="fa-solid fa-chevron-right"></i></div>
+            </button>
+        </form>
+    </div>
+
+    <div class="img-container">
+        <div class="card">
+            <img src="resources/rooms.jpg" alt="Rooms">
+            <div class="label">Rooms</div>
+        </div>
+        <div class="middleImages">
+            <div class="card attraction">
+                <img src="resources/attraction.webp" alt="Nearby Attractions">
+                <div class="label">Attractions</div>
+            </div>
+            <div class="card Facilities">
+                <img src="resources/wifi.webp" alt="Facilities">
+                <div class="label">Facilities</div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="resources/gallery.jpg" alt="Gallery">
+            <div class="label">Gallery</div>
+        </div>
+    </div>
+
+    <div class="facilities-container">
+        <h1>Facilities</h1>
+        <div class="facility">
+            <i class="fa-solid fa-temperature-arrow-down"></i>
+            <p>AC</p>
+        </div>
+        <div class="facility">
+            <i class="fa-solid fa-square-parking"></i>
+            <p>Car Parking</p>
+        </div>
+        <div class="facility">
+            <i class="fa-solid fa-wifi"></i>
+            <p>Free Wi-Fi</p>
+        </div>
+        <a href="#" class="explore-button">Explore More</a>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>Aghor Sakti Peeth</h3>  
+            </div>
+            <div class="options">
+                <div class="footer-section">
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Location</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Term of Use</a></li>
+                        <li><a href="#">Privacy Police</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <ul>
+                        <li><a href="#">Services & Facilities</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">How to book</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© Copyright Booking Hotels. All right reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

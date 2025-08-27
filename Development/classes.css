@@ -1,0 +1,12 @@
+.flex{
+    display: flex;
+}
+.alignItems{
+    align-items: center;
+}
+.justifyContent{
+    justify-content: center;
+}
+.border{
+    border: 2px solid black;
+}

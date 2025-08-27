@@ -1,0 +1,302 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navigation */
+.nav {
+    background: white;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-family: serif;
+    color: #000;
+}
+
+.nav-links {
+    display: none; /* Hidden by default on mobile */
+}
+
+.nav-link {
+    color: #374151;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+.menu-button {
+    display: block; /* Shown by default on mobile */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.menu-button svg {
+    width: 24px;
+    height: 24px;
+    color: #f8fbff;
+}
+
+.btn-primary {
+    background-color: #000000;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #000000;
+}
+
+/* Responsive styles for navigation */
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex; /* Show nav links on desktop */
+        align-items: center;
+    }
+    
+    .menu-button {
+        display: none; /* Hide menu button on desktop */
+    }
+}
+
+/* Add top margin to compensate for fixed navbar */
+body {
+    padding-top: 70px;
+}
+
+/* Make hero section responsive */
+.hero {
+    margin-top: 0;
+}
+
+/* Hero Section */
+.hero {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/1200x400/?hotel,luxury');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+/* Search Form */
+.search-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn {
+    padding: 12px 24px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #202020;
+}
+
+/* Room List */
+.room-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.room-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+}
+
+.room-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.room-details {
+    padding: 20px;
+}
+
+.room-name {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.room-price {
+    font-size: 24px;
+    color: #1a365d;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.room-features {
+    margin-bottom: 15px;
+}
+
+.feature {
+    display: inline-block;
+    background-color: #f5f7fa;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Booking Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.booking-form .form-group {
+    margin-bottom: 20px;
+}
+
+/* Confirmation Message */
+.confirmation {
+    text-align: center;
+    padding: 30px;
+    background-color: #f0fff4;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: none;
+}
+
+.confirmation h3 {
+    color: #38a169;
+    margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .search-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .room-list {
+        grid-template-columns: 1fr;
+    }
+}
