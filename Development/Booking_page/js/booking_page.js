@@ -144,7 +144,6 @@ async function fetchBookings() {
                 <p>Check-out: ${formatDate(booking.checkOutDate)}</p>
                 <p>Status: <span class="status ${booking.status}">${booking.status}</span></p>
                 <div class="actions">
-                    <button class="view-details-btn" data-booking-id="${booking._id}">View Details</button>
                     <button class="update-booking-btn" data-booking-id="${booking._id}"
                         ${booking.status === 'Cancelled' || booking.status === 'checkedIn' || booking.status === 'checkedOut' ? 'disabled' : ''}>
                         Update
@@ -156,17 +155,6 @@ async function fetchBookings() {
                 </div>
             `;
             bookingsListElement.appendChild(bookingCard);
-        });
-
-        // Add event listeners for actions
-        document.querySelectorAll('.view-details-btn').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const bookingId = event.target.dataset.bookingId;
-                // For simplicity, just log or show an alert. A full "details" page would be separate.
-                alert(`Viewing details for Booking ID: ${bookingId}. Check console for full object.`);
-                // You could fetch getBookingById here and display it in a modal
-                // fetchBookingDetails(bookingId);
-            });
         });
 
         document.querySelectorAll('.update-booking-btn').forEach(button => {

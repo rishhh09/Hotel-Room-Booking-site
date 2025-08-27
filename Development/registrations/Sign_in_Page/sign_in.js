@@ -75,7 +75,7 @@ async function registerUser(){
 }
 
 
-// login User - CRITICAL FIXES HERE
+// login User
 async function loginUser(){
     const credentials = {
         email: document.getElementById('login-email').value,
@@ -83,7 +83,6 @@ async function loginUser(){
     }
 
     try{
-        // IMPORTANT: CONFIRM THIS URL AND PORT MATCH YOUR BACKEND'S LOGIN ENDPOINT
         const response = await fetch('http://localhost:5001/api/user/login' , {
             method: "POST" ,
             headers: {"Content-Type": "application/json"} ,
@@ -96,8 +95,6 @@ async function loginUser(){
             throw new Error(data.message || "Login failed. Invalid credentials or server error.");
         }
 
-        // --- NEW/CRITICAL ADDITIONS HERE ---
-        // 1. Store JWT token and user details in localStorage
         localStorage.setItem('jwtToken', data.token);
         localStorage.setItem('userName', data.userName);
         localStorage.setItem('userRole', data.role); // Store the user's role
